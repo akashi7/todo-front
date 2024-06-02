@@ -22,7 +22,7 @@ const DashboardRoutes: FC = (): ReactElement => {
       <div className='flex h-[100%]'>
         <Sidebar />
         <div className='flex-1 h-[100%] overflow-y-hidden'>
-          <NavBar />
+          <NavBar role={role} />
           <ContentWrapper>
             <Routes>
               {userType(role).isAdmin ? (

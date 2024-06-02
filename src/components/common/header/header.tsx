@@ -3,11 +3,16 @@ import { FC, ReactElement } from 'react'
 import { FaRegUser } from 'react-icons/fa'
 import { IoIosLogOut } from 'react-icons/io'
 import { MdKeyboardArrowDown, MdMenuOpen } from 'react-icons/md'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { removeFromLocal } from '../../../helpers/handleStorage'
 import { isTokenValid } from '../../../helpers/verifyToken'
+import userType, { Role } from '../../../helpers/userType'
 
-const NavBar: FC = (): ReactElement => {
+interface props {
+  role: Role
+}
+
+const NavBar: FC<props> = ({ role }): ReactElement => {
   const navigate = useNavigate()
 
   const handleLogout = (): void => {
@@ -35,7 +40,27 @@ const NavBar: FC = (): ReactElement => {
 
   return (
     <nav className='p-5  bg-[#31b0d5] flex  text-white justify-between items-center border-b border-gray-100'>
-      <MdMenuOpen size={25} />
+      <MdMenuOpen size={25} className='lg:block hidden' />
+      <div className='flex lg:hidden'>
+        <div className='flex flex-row gap-5 '>
+          {userType(role).isAdmin ? (
+            <>
+              <Link to={'/fd'} className=' hover:text-white'>
+                Orders
+              </Link>
+            </>
+          ) : (
+            <>
+              <Link to={'/fd'} className=' hover:text-white'>
+                Farms
+              </Link>
+              <Link to={'/fd/order'} className=' hover:text-white'>
+                Orders
+              </Link>
+            </>
+          )}
+        </div>
+      </div>
       <Dropdown overlay={ProfileDropdown} trigger={['click']}>
         <div className='flex items-center gap-2 lg:gap-4 cursor-pointer hover:bg-gray-200 hover:text-[#31b0d5]  p-2 px-2 rounded'>
           <FaRegUser />

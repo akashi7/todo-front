@@ -36,7 +36,7 @@ const authApi = baseAPI.injectEndpoints({
     }),
     signup: builder.mutation<AuthResponse, SignupDTO>({
       query: (DTO) => ({
-        url: `/auth/sign-up/`,
+        url: `/auth/signup/`,
         method: 'POST',
         body: DTO,
       }),
