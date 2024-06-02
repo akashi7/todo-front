@@ -12,7 +12,7 @@ interface SidebarItemProps {
   url: string
 }
 
-const DEFAULT_ROLE: Role = 'USER'
+const DEFAULT_ROLE: Role = 'FARMER'
 
 const SidebarItem: FC<SidebarItemProps> = ({
   icon,
@@ -70,7 +70,7 @@ const Sidebar: FC = (): ReactElement => {
         <SidebarItem
           icon={<MdBookmarkBorder size={30} />}
           text='Order'
-          url={userType(role).isAdmin ? '/fd/' : '/fd/order'}
+          url={userType(role).isAdmin ? '/fd/admin' : '/fd/order'}
         />
       </div>
     </section>

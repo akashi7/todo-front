@@ -2,6 +2,7 @@
 import { Col, Form, Row } from 'antd'
 import { FC, ReactElement } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
+import { ERoles } from '../../config/constant'
 import handleAPIRequests from '../../helpers/handleApiRequests'
 import { setToLocal } from '../../helpers/handleStorage'
 import requiredField from '../../helpers/requiredField'
@@ -22,7 +23,11 @@ const Login: FC = (): ReactElement => {
   const onSuccess = (res: AuthResponse): void => {
     if (res.data) {
       setToLocal('token', res.data.token)
-      navigate('/fd')
+      if (res.data.user.role === ERoles.ADMIN) {
+        navigate('/fd/admin')
+      } else {
+        navigate('/fd')
+      }
     }
   }
 

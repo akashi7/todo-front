@@ -7,11 +7,11 @@ import Sidebar from '../components/common/sidebar/sidebar'
 import Farm from '../components/dashboard/farms/farms'
 import Order from '../components/dashboard/orders/order'
 import NotFound from '../components/notFound'
-import userType, { Role } from '../helpers/userType'
+import { Role } from '../helpers/userType'
 import { isTokenValid } from '../helpers/verifyToken'
 import Private from './private'
 
-const DEFAULT_ROLE: Role = 'USER'
+const DEFAULT_ROLE: Role = 'FARMER'
 
 const DashboardRoutes: FC = (): ReactElement => {
   const { role: userRole } = isTokenValid()
@@ -25,14 +25,9 @@ const DashboardRoutes: FC = (): ReactElement => {
           <NavBar role={role} />
           <ContentWrapper>
             <Routes>
-              {userType(role).isAdmin ? (
-                <Route path='/' element={<Order />} />
-              ) : (
-                <>
-                  <Route path='/' element={<Farm />} />
-                  <Route path='/order' element={<Order />} />
-                </>
-              )}
+              <Route path='/' element={<Farm />} />
+              <Route path='/order' element={<Order />} />
+              <Route path='/admin' element={<Order />} />
               <Route path='*' element={<NotFound />} />
             </Routes>
           </ContentWrapper>

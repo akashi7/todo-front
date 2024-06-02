@@ -5,8 +5,8 @@ import { IoIosLogOut } from 'react-icons/io'
 import { MdKeyboardArrowDown, MdMenuOpen } from 'react-icons/md'
 import { Link, useNavigate } from 'react-router-dom'
 import { removeFromLocal } from '../../../helpers/handleStorage'
-import { isTokenValid } from '../../../helpers/verifyToken'
 import userType, { Role } from '../../../helpers/userType'
+import { isTokenValid } from '../../../helpers/verifyToken'
 
 interface props {
   role: Role
@@ -45,7 +45,7 @@ const NavBar: FC<props> = ({ role }): ReactElement => {
         <div className='flex flex-row gap-5 '>
           {userType(role).isAdmin ? (
             <>
-              <Link to={'/fd'} className=' hover:text-white'>
+              <Link to={'/fd/admin'} className=' hover:text-white'>
                 Orders
               </Link>
             </>

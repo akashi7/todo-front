@@ -1,4 +1,4 @@
-export type Role = 'ADMIN' | 'USER'
+export type Role = 'ADMIN' | 'FARMER'
 
 export interface RoleFlags {
   isAdmin: boolean
@@ -7,5 +7,5 @@ export interface RoleFlags {
 
 export default (role: Role): RoleFlags => ({
   isAdmin: role === 'ADMIN',
-  isFarmer: role === 'USER',
+  isFarmer: role === 'FARMER',
 })

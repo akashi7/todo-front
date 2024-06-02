@@ -20,7 +20,7 @@ import Paginator from '../../common/paginator/paginator'
 import MakeOrderForm from '../../forms/makeOrder'
 import OrderTable from '../../tables/orderTables'
 
-const DEFAULT_ROLE: Role = 'USER'
+const DEFAULT_ROLE: Role = 'FARMER'
 
 const Order: FC = (): ReactElement => {
   const [currentPage, setCurrentPage] = useState<number>(0)
