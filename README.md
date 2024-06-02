@@ -11,3 +11,4 @@
 1. Vite React with Typescript
 2. Redux ToolKit and Redux toolkit Query
 3. Tailwind Css
+4. Antd
