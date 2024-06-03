@@ -9,7 +9,6 @@ import {
   makeOrderDTO,
   useApproveOrderMutation,
   useDeclineOrderMutation,
-  useGetFarmsQuery,
   useGetOrdersQuery,
   useMakOrderMutation,
 } from '../../../lib/api/user/userEndpoints'
@@ -24,16 +23,12 @@ const DEFAULT_ROLE: Role = 'FARMER'
 
 const Order: FC = (): ReactElement => {
   const [currentPage, setCurrentPage] = useState<number>(0)
-  const [isVisible, setIsVisible] = useState<boolean>(false)
-
-  const [form] = Form.useForm()
 
   const size = 5
 
-  const { data: farmsData, isFetching: farmsFetching } = useGetFarmsQuery({
-    page: currentPage.toString(),
-    size: size.toString(),
-  })
+  const [isVisible, setIsVisible] = useState<boolean>(false)
+
+  const [form] = Form.useForm()
 
   const [order, { isLoading }] = useMakOrderMutation()
   const [approve] = useApproveOrderMutation()
@@ -140,9 +135,9 @@ const Order: FC = (): ReactElement => {
         </p>
         <MakeOrderForm
           form={form}
-          data={farmsData?.data.items}
           onFinish={onFinish}
-          isLoading={farmsFetching}
+          currentPage={currentPage}
+          size={size}
         />
       </CustomModal>
       <ContentNavbar left={<LeftSide />} right={<RightSide />} />
