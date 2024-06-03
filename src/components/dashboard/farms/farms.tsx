@@ -1,5 +1,5 @@
 import { Form } from 'antd'
-import { FC, ReactElement, useState } from 'react'
+import { FC, ReactElement, useEffect, useState } from 'react'
 import handleAPIRequests from '../../../helpers/handleApiRequests'
 import {
   addFarmDTO,
@@ -18,7 +18,7 @@ const Farm: FC = (): ReactElement => {
   const [form] = Form.useForm()
 
   const size = 5
-  const { data, isFetching } = useGetFarmsQuery({
+  const { data, isFetching, refetch } = useGetFarmsQuery({
     page: currentPage.toString(),
     size: size.toString(),
   })
@@ -33,6 +33,11 @@ const Farm: FC = (): ReactElement => {
   const onSuccess = () => {
     handleCancel()
   }
+
+  useEffect(() => {
+    refetch()
+    //eslint-disable-next-line
+  }, [])
 
   const [isVisible, setIsVisible] = useState<boolean>(false)
 

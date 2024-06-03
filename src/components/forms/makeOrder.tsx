@@ -1,5 +1,5 @@
 import { Col, Form, FormInstance, Row } from 'antd'
-import { FC, ReactElement } from 'react'
+import { FC, ReactElement, useEffect } from 'react'
 import requiredField from '../../helpers/requiredField'
 import {
   makeOrderDTO,
@@ -20,7 +20,7 @@ const MakeOrderForm: FC<AddFarmFormProps> = ({
   currentPage,
   size,
 }): ReactElement => {
-  const { data, isFetching } = useGetFarmsQuery({
+  const { data, isFetching, refetch } = useGetFarmsQuery({
     page: currentPage.toString(),
     size: size.toString(),
   })
@@ -62,6 +62,11 @@ const MakeOrderForm: FC<AddFarmFormProps> = ({
       seedName: 'seed 3',
     },
   ]
+
+  useEffect(() => {
+    refetch()
+    //eslint-disable-next-line
+  }, [])
 
   return (
     <Form

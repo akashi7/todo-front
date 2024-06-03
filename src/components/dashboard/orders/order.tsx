@@ -1,5 +1,5 @@
 import { Form } from 'antd'
-import { FC, ReactElement, useState } from 'react'
+import { FC, ReactElement, useEffect, useState } from 'react'
 import handleAPIRequests from '../../../helpers/handleApiRequests'
 import userType, { Role } from '../../../helpers/userType'
 import { isTokenValid } from '../../../helpers/verifyToken'
@@ -56,7 +56,12 @@ const Order: FC = (): ReactElement => {
     queryParameters['userId'] = id
   }
 
-  const { data, isFetching } = useGetOrdersQuery(queryParameters)
+  const { data, isFetching, refetch } = useGetOrdersQuery(queryParameters)
+
+  useEffect(() => {
+    refetch()
+    //eslint-disable-next-line
+  }, [])
 
   const RightSide = () =>
     userType(role).isAdmin ? null : (
