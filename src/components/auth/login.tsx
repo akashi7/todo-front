@@ -55,9 +55,7 @@ const Login: FC = (): ReactElement => {
           form={form}
           onFinish={onFinish}
         >
-          <h5 className='text-xl font-medium text-center text-black'>
-            Create a account
-          </h5>
+          <h5 className='text-xl font-medium text-center text-black'>Login</h5>
           <Row className='w-[100%]'>
             <Col className='gutter-row mt-2 w-full'>
               <CustomInput

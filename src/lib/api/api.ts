@@ -1,7 +1,7 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { getFromLocal } from '../../helpers/handleStorage'
 
-const BASE_URL = 'https://todo-api-a64u.onrender.com/api/'
+const BASE_URL = import.meta.env.VITE_API_URL
 
 export const baseAPI = createApi({
   baseQuery: fetchBaseQuery({
